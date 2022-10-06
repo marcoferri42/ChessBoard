@@ -1,22 +1,15 @@
 package Main;
 
-public class GameManager 
-{
+import java.io.IOException;
 
-    UI ui = new UI(this);
+public class GameManager {
 
-    public static void main(String[] args) {
-      new GameManager();
-        
-      GamePanel gamePanel = new GamePanel();  
-      gamePanel.startGameThread();    
-
-      
+    public static void main(String[] args) throws IOException {
+        GameManager gm = new GameManager();
+        UI ui = new UI(gm);
     }
 
-
-    public GameManager()
-    {
+    public GameManager() {
       // Make GameManager
     }
 }

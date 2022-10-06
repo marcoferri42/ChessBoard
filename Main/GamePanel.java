@@ -1,10 +1,9 @@
 package Main;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable
-{
+public class GamePanel extends JPanel implements Runnable {
     // Screen Settings
     
     final int originalTileSize = 10;  // blocco pixel 16x16
@@ -12,30 +11,24 @@ public class GamePanel extends JPanel implements Runnable
 
     final int tileSize = originalTileSize * scale; // blocco scalato 48x48
     final int screenWidth = tileSize * 8; 
-    final int screenHeight = tileSize * 8; 
-
-
+    final int screenHeight = tileSize * 8;
 
     Thread gameThread;
 
-    public GamePanel()
-    {
+    public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
 
     }
 
-    public void startGameThread()
-    {
+    public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
 
-    public void run() 
-    {
-        while(gameThread != null)
-        {
+    public void run() {
+        while(gameThread != null) {
             //System.out.print("Running\n");
 
             update();
@@ -54,8 +47,7 @@ public class GamePanel extends JPanel implements Runnable
     private void update() {
     }
 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);  // SUPER -> JPanel
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.BLUE);
@@ -65,21 +57,15 @@ public class GamePanel extends JPanel implements Runnable
         g2.dispose();
     }
 
-    private void drawChessBoard(Graphics2D g2)
-    {
-        for(int y = 0; y<8; y++)
-        {
-            if(y%2 == 0)
-            {
-                for(int x = 0; x<8; x=x+2)
-                {
+    private void drawChessBoard(Graphics2D g2){
+        for(int y = 0; y<8; y++) {
+            if(y%2 == 0) {
+                for(int x = 0; x<8; x=x+2){
                     g2.fillRect( x*tileSize, y*tileSize, tileSize, tileSize);
                 }
             }
-            else
-            {
-                for(int x = 1; x<8; x=x+2)
-                {
+            else {
+                for(int x = 1; x<8; x=x+2) {
                     g2.fillRect( x*tileSize, y*tileSize, tileSize, tileSize);
                 }
             }

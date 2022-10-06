@@ -1,6 +1,10 @@
 package Main;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,19 +19,27 @@ public class UI {
     JPanel[] bgPanel = new JPanel[1];
     JLabel[] bgLabel = new JLabel[1]; 
 
-    public UI(GameManager gm)
-    {
+    public UI(GameManager gm) throws IOException {
         this.gm = gm;
-        createWindow();
+        Graphics g = new Graphics();
 
-        GamePanel gamePanel = new GamePanel();        
-        window.add(gamePanel);
-        createBackground();
+        JFrame myWindow = this.createWindow();
+
+        BufferedImage img = ImageIO.read(new File("bin/chessBoard.png"));
+        JLabel background = new JLabel(new ImageIcon(img));
+
+        myWindow.paint(g.drawImage(img, 0,0));
+
+        /**
+         * GamePanel gamePanel = new GamePanel();
+         *         window.add(gamePanel);
+         *         createBackground();
+         */
+
     }
 
 
-    public void createWindow()
-    {
+    public JFrame createWindow() throws IOException {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(800, 800);
         window.setTitle("Really Bad Chess");
@@ -35,24 +47,23 @@ public class UI {
         window.setResizable(false);
         window.setLayout(null);
         window.setLocationRelativeTo(null);
-        window.setVisible(true);       
+        window.setVisible(true);
+
+        return window;
     }
 
-    public void createBackground()
-    {
+    public JPanel createPanel(String name) throws IOException {
         bgPanel[0]= new JPanel();
         bgPanel[0].setBounds(0,0,800,800);
         bgPanel[0].setLayout(null);
         bgPanel[0].setBackground(Color.BLACK);
-        window.add(bgPanel[0]);
 
         bgLabel[0] = new JLabel();
         bgLabel[0].setBounds(0,0,800,800);
 
-        ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("chessBoard.png"));
-        bgLabel[0].setIcon(bgIcon);
 
-        bgPanel[0].add(bgLabel[0]);
+
+        return bgPanel[0];
     }
 
 }
