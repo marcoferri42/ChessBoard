@@ -1,2 +1,2 @@
-# ProjChess
+# ProjChess ♟️
 lil cute chess board :)
