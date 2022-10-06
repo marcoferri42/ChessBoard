@@ -1,2 +1,2 @@
-# ProjChess ♟️
-lil cute chess board made with Java
+# My lil ♟️ board
+cute chess board made with Java
